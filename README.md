@@ -1,3 +1,3 @@
 # myreact
 
-My ReactJS App - Github.
+My ReactJS App - Two way binding
