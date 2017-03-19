@@ -7,8 +7,9 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            homeLink: "Home"
-        };
+            homeLink: "Home",
+            homeComp: true
+        };        
     }
 
     greet() {
@@ -19,11 +20,33 @@ class App extends React.Component {
         this.setState({homeLink: linkName});                    
     }
 
+    onOpenCloseHomeComponent() {
+        this.setState({
+            homeComp: !this.state.homeComp
+        })
+    }
+
     render() {
         var choice = {
             name: "Sports",
             hobbies: ["Cricket", "Football"]
         };
+        var homeCompVal = "";
+        var homeButtonName = "Open";
+        if(this.state.homeComp) {
+            homeCompVal = (
+                <Home 
+                    name={"Kavien"} 
+                    age={5} ch={choice} 
+                    greet={this.greet}
+                    hlName={this.state.homeLink}
+                    changeLink={this.onChangeLinkName.bind(this)}
+                >
+                    <p>I like Daddy.</p>
+                </Home>
+            );
+            homeButtonName = "Close";
+        }
         return (
             <div className="container">
                 <div className="row">
@@ -33,15 +56,11 @@ class App extends React.Component {
                 </div>            
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-0">
-                        <Home 
-                            name={"Kavien"} 
-                            age={5} ch={choice} 
-                            greet={this.greet}
-                            hlName={this.state.homeLink}
-                            changeLink={this.onChangeLinkName.bind(this)}
-                        >
-                            <p>I like Daddy.</p>
-                        </Home>
+                        <button className="btn btn-primary"
+                            onClick={this.onOpenCloseHomeComponent.bind(this)}>
+                            {homeButtonName} Home Component
+                        </button>
+                        {homeCompVal}
                     </div>
                 </div>
             </div>            
