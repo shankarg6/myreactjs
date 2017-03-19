@@ -3,8 +3,7 @@ import React from "react";
 export class Home extends React.Component {
 
     constructor(props) {
-        super();
-        console.log(props);
+        super();        
         this.state = {
             age: props.age,
             level: 1,
@@ -18,6 +17,36 @@ export class Home extends React.Component {
                 })
             }, 1000
         );
+        console.log("constructor");
+    }
+
+    componentWillMount() {
+        console.log("componentWillMount");
+    }
+    
+    componentDidMount() {
+        console.log("componentDidMount");
+    }
+
+    componentWillReceiveProps(props) {
+        console.log("componentWillReceiveProps", props);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("shouldComponentUpdate", nextProps, nextState);
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("componentWillUpdate", nextProps, nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate", prevProps, prevState);
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount");
     }
 
     onGrow() {
