@@ -9,14 +9,14 @@ export class Home extends React.Component {
             age: props.age,
             level: 1,
             hideButtons: true,
-            homeLink: "Sweet-Home"
+            homeLink: props.hlName
         };
 
         setTimeout (() => {
                 this.setState({
                     hideButtons: false
                 })
-            }, 6000
+            }, 1000
         );
     }
 
@@ -30,6 +30,12 @@ export class Home extends React.Component {
 
     onChangeLink() {
         this.props.changeLink(this.state.homeLink);
+    }
+
+    onTextChange(event) {
+        this.setState({
+            homeLink: event.target.value
+        });
     }
 
     render() {
@@ -46,14 +52,18 @@ export class Home extends React.Component {
                 <button className="btn btn-primary" onClick={this.props.greet}>Greet</button>
                 <hr/>                
                 <div hidden={this.state.hideButtons}>
+                    <input type="text" value={this.state.homeLink}
+                        onChange={(event) => this.onTextChange(event)}
+                        />&nbsp;
+                    <button className="btn btn-primary" onClick={() => this.onChangeLink()}>
+                        Change Link
+                    </button>
+                    <hr/>
                     <button className="btn btn-primary" onClick={() => this.onGrow()}>
                         Click Me to Grow
                     </button>&nbsp;
                     <button className="btn btn-primary" onClick={() => this.onNextLevel()}>
                         Next Level
-                    </button>&nbsp;
-                    <button className="btn btn-primary" onClick={() => this.onChangeLink()}>
-                        Change Link
                     </button>
                 </div>
             </div>
@@ -66,5 +76,6 @@ Home.PropTypes = {
     age: React.PropTypes.number,
     ch: React.PropTypes.object,
     greet: React.PropTypes.func,
-    changeLink: React.PropTypes.func
+    changeLink: React.PropTypes.func,
+    hlName: React.PropTypes.string
 };

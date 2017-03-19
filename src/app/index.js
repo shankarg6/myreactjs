@@ -4,7 +4,6 @@ import {Header} from "./components/Header";
 import {Home} from "./components/Home";
 
 class App extends React.Component {
-
     constructor() {
         super();
         this.state = {
@@ -38,7 +37,7 @@ class App extends React.Component {
                             name={"Kavien"} 
                             age={5} ch={choice} 
                             greet={this.greet}
-                            greetMessage={this.state.greetMessage}
+                            hlName={this.state.homeLink}
                             changeLink={this.onChangeLinkName.bind(this)}
                         >
                             <p>I like Daddy.</p>
